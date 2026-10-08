@@ -1,343 +1,187 @@
-# ApexPlanet Data Analytics Internship – Task 1
+# ApexPlanet Data Analytics Internship – Task 2
 
-## Data Immersion & Wrangling
+## Exploratory Data Analysis (EDA) & Business Intelligence
 
-### 📌 Project Overview
+This repository contains my work for **Task 2** of the **ApexPlanet Software Pvt. Ltd. Data Analytics Internship**.
 
-This project is completed as part of the **ApexPlanet Software Pvt. Ltd. 60-Day Data Analytics Internship Program**.
-
-**Task 1: Data Immersion & Wrangling** focuses on understanding, assessing, cleaning, transforming, and preparing a sales dataset for further data analysis.
-
-The objective is to convert the raw dataset into a reliable and analysis-ready dataset by identifying and addressing data quality issues.
+The main objective of this task was to explore a sales dataset, identify meaningful patterns and trends, answer business questions using SQL, analyze relationships between variables, and create a static Business Intelligence dashboard.
 
 ---
 
 ## 🎯 Objectives
 
-The main objectives of this task are:
-
-* Understand and familiarize myself with the dataset.
-* Identify the meaning and relevance of each variable.
-* Create a data dictionary.
-* Assess the quality of the dataset.
-* Identify missing values and duplicate records.
-* Check data types and formatting consistency.
-* Detect potential outliers.
-* Validate important numerical calculations.
-* Clean and transform the dataset.
-* Perform feature engineering.
-* Produce a final analysis-ready dataset.
+- Perform descriptive statistics and exploratory data analysis
+- Analyze numerical and categorical variables
+- Identify important sales trends and patterns
+- Answer business questions using SQL
+- Perform multivariate analysis and correlation analysis
+- Create meaningful data visualizations
+- Develop a static Business Intelligence dashboard
+- Extract useful business insights from the dataset
 
 ---
 
-## 📊 Dataset Description
+## 🛠️ Tools & Technologies
 
-The dataset contains **sales transaction records** with information related to orders, customers, products, pricing, quantities, and sales values.
-
-### Main Variables
-
-| Column        | Description                         |
-| ------------- | ----------------------------------- |
-| `Order_ID`    | Unique identifier for a sales order |
-| `Order_Date`  | Date on which the order was placed  |
-| `Customer_ID` | Unique customer identifier          |
-| `Gender`      | Gender of the customer              |
-| `Age`         | Age of the customer                 |
-| `City`        | Customer's city                     |
-| `Product`     | Product purchased                   |
-| `Category`    | Product category                    |
-| `Quantity`    | Number of units purchased           |
-| `Unit_Price`  | Price per unit                      |
-| `Total_Sales` | Total value of the transaction      |
-
-A detailed data dictionary is included in the repository.
+- **Python**
+- **Pandas**
+- **NumPy**
+- **Matplotlib**
+- **Seaborn**
+- **SQL / SQLite**
+- **Google Colab**
+- **Microsoft Excel**
+- **GitHub**
 
 ---
 
-## 🛠️ Technologies Used
+## 📊 Dataset
 
-* **Python**
-* **Google Colab**
-* **Pandas**
-* **NumPy**
-* **Matplotlib**
-* **Seaborn**
-* **Microsoft Excel**
-* **GitHub**
+The project uses a sales transaction dataset containing information related to:
 
----
+- Order details
+- Customer information
+- Gender
+- Age
+- City
+- Product
+- Category
+- Quantity
+- Unit Price
+- Total Sales
+- Order Date
 
-# 🔍 Data Immersion
-
-The dataset was first loaded into Python using Pandas.
-
-The initial exploration included:
-
-* Number of rows and columns
-* Column names
-* Data types
-* First few records
-* Statistical summary
-* Unique values
-* Missing-value analysis
-
-The dataset contains **1,000 records and 12 original columns**.
+The dataset was explored and analyzed to understand sales performance and customer-related patterns.
 
 ---
 
-# 🔎 Data Quality Assessment
+# 🔍 Analysis Performed
 
-Several data-quality checks were performed.
+## 1. Descriptive Statistics & Univariate Analysis
 
-### 1. Missing Values
+Descriptive statistics were calculated to understand the distribution and characteristics of the dataset.
 
-Missing values were checked for every column.
+The analysis included:
 
-The dataset contained missing values in fields such as:
+- Age distribution
+- Quantity distribution
+- Unit price distribution
+- Total sales distribution
+- Sales by product
+- Sales by category
+- Sales by city
+- Sales by gender
+- Monthly sales trends
 
-* `Age`
-* `City`
-
-These missing values were handled during the cleaning stage.
-
-### 2. Duplicate Records
-
-Exact duplicate rows were checked using Pandas.
-
-No exact duplicate transaction rows were identified.
-
-Duplicate `Order_ID` values were also investigated separately because an identifier should ideally be unique.
-
-### 3. Date Validation
-
-The `Order_Date` column was converted into a standard datetime format using Pandas.
-
-Invalid date values were also checked.
-
-### 4. Categorical Consistency
-
-Categorical fields such as:
-
-* Gender
-* City
-* Product
-* Category
-
-were examined for inconsistent values and unnecessary whitespace.
-
-### 5. Outlier Detection
-
-The **Interquartile Range (IQR)** method was used to identify potential outliers in numerical variables such as:
-
-* Age
-* Quantity
-* Unit Price
-* Total Sales
-
-Potential high-value sales transactions were investigated rather than automatically removed.
+Visualizations such as histograms and bar charts were created to understand individual variables.
 
 ---
 
-# 🧹 Data Cleaning
+## 2. SQL Business Questions
 
-The following cleaning operations were performed.
+SQL was used to answer important business questions related to the sales data.
 
-### Missing Age
+### Business Questions
 
-Missing values in `Age` were replaced using the **median age**.
+1. What is the total revenue generated?
+2. What are the top 5 products by revenue?
+3. What is the monthly sales trend?
+4. Which cities generate the highest revenue?
+5. Which product categories generate the most revenue?
+6. What is the average order value by category?
+7. Which gender contributes the most revenue?
 
-Median imputation was selected because it is less sensitive to extreme values than the mean.
-
-### Missing City
-
-Missing values in `City` were replaced using the **mode**, which represents the most frequently occurring city.
-
-### Duplicate Rows
-
-Exact duplicate rows were removed using:
-
-```python
-df.drop_duplicates()
-```
-
-### Duplicate Order IDs
-
-Repeated `Order_ID` values were investigated.
-
-The repeated records represented different transactions rather than identical rows, so they were not simply deleted. Unique identifiers were created for the affected records.
-
-### Text Standardization
-
-Text fields were cleaned by removing unnecessary leading and trailing whitespace.
-
-### Date Standardization
-
-`Order_Date` was converted into a proper datetime format.
-
-### Total Sales Validation
-
-The `Total_Sales` column was validated using:
-
-```text
-Total Sales = Quantity × Unit Price
-```
-
-The calculation was checked to ensure the recorded sales values were consistent with the quantity and unit price.
+The SQL queries and their results are included in this repository.
 
 ---
 
-# ⚙️ Feature Engineering
+## 3. Multivariate Analysis & Correlation
 
-Additional features were created to make the dataset more useful for future analysis.
+Relationships between multiple variables were explored using:
 
-### Order Year
+- Correlation matrix
+- Correlation heatmap
+- Scatter plots
+- Pair plots
+- Category and gender analysis
 
-Extracted from `Order_Date`.
+The analysis explored relationships such as:
 
-```text
-Order_Year
-```
-
-### Order Month
-
-Extracted as the numerical month.
-
-```text
-Order_Month
-```
-
-### Order Month Name
-
-The month name was extracted for easier reporting.
-
-```text
-Order_Month_Name
-```
-
-### Age Group
-
-Customers were grouped into age categories:
-
-* Under 18
-* 18–30
-* 31–45
-* 46–60
-* 60+
+- Quantity vs Total Sales
+- Unit Price vs Total Sales
+- Age vs Total Sales
+- Product Category vs Gender
 
 ---
 
-# 📈 Outlier Treatment
+## 📈 Business Intelligence Dashboard
 
-Outliers were detected using the **IQR method**.
+A static Business Intelligence dashboard was created based on the findings from the exploratory analysis.
 
-Potential outliers in `Total_Sales` were not automatically removed.
+### Key KPIs
 
-The reason is that a high-value transaction can be a legitimate business transaction rather than a data-entry error.
+- **Total Revenue**
+- **Total Orders**
+- **Average Order Value**
+- **Top Product**
+- **Top Category**
 
-Therefore, valid high-value sales were retained in the cleaned dataset.
+### Dashboard Visualizations
 
----
-
-# ✅ Final Data Validation
-
-After cleaning, the dataset was checked again for:
-
-* Missing values
-* Duplicate rows
-* Duplicate identifiers
-* Correct data types
-* Valid dates
-* Correct sales calculations
-* Consistent categorical values
-
-The resulting dataset is prepared as an **analysis-ready dataset** for future exploratory data analysis and business intelligence tasks.
+- Revenue by Category
+- Revenue by Product
+- Monthly Revenue Trend
+- Revenue by City
 
 ---
 
-# 📁 Repository Structure
+## 📁 Repository Contents
 
-```text
-ApexPlanet-Task1-Data-Wrangling/
-│
-├── ApexPlanet_Task1_Data_Wrangling.ipynb
-│
-├── ApexPlanet_Task1_Cleaned_Sales_Dataset.csv
-│
-├── ApexPlanet_Task1_Data_Dictionary.xlsx
-│
-├── ApexPlanet_Task1_Cleaning_Summary.xlsx
-│
-└── README.md
-```
+| File | Description |
+|---|---|
+| `ApexPlanet_Task2_EDA.ipynb` | Complete Python EDA notebook |
+| `ApexPlanet_Task2_EDA_Report.xlsx` | EDA analysis and results |
+| `ApexPlanet_Task2_SQL_Queries.sql` | SQL business questions and queries |
+| `ApexPlanet_Task2_SQL_Results.xlsx` | Results generated from SQL queries |
+| `ApexPlanet_Task2_Dashboard.png` | Static Business Intelligence dashboard |
+| `README.md` | Project documentation |
 
 ---
 
-# 📄 Deliverables
+## 💡 Key Skills Demonstrated
 
-The following deliverables were prepared for Task 1:
-
-### GitHub
-
-* Data cleaning and wrangling notebook
-* Cleaned dataset
-* Data dictionary
-* Cleaning summary
-* Project documentation
-
-### LinkedIn
-
-A **3–5 minute walkthrough video** will demonstrate:
-
-1. Dataset introduction
-2. Data quality issues
-3. Missing-value analysis
-4. Duplicate analysis
-5. Outlier detection
-6. Cleaning process
-7. Feature engineering
-8. Final cleaned dataset
+- Exploratory Data Analysis
+- Data Visualization
+- Python Programming
+- Pandas
+- SQL Querying
+- Statistical Analysis
+- Correlation Analysis
+- Business Intelligence
+- Dashboard Design
+- Business Insight Generation
 
 ---
 
-# 🎓 Key Skills Demonstrated
+## 🏢 Internship Information
 
-Through this task, the following skills were practiced:
-
-* Data Loading
-* Data Exploration
-* Data Profiling
-* Data Quality Assessment
-* Missing Data Handling
-* Duplicate Detection
-* Data Cleaning
-* Data Transformation
-* Date Handling
-* Outlier Detection
-* Feature Engineering
-* Data Validation
-* Python
-* Pandas
-* NumPy
-* Data Visualization
-* GitHub Project Documentation
+**Organization:** ApexPlanet Software Pvt. Ltd.  
+**Program:** Data Analytics Internship  
+**Task:** Task 2 – Exploratory Data Analysis (EDA) & Business Intelligence
 
 ---
 
-# 🚀 Conclusion
+## 📌 Conclusion
 
-Task 1 successfully demonstrates the complete initial stage of a data analytics workflow, from understanding the raw sales dataset to cleaning, validating, transforming, and preparing the final dataset for analysis.
+This task provided hands-on experience in exploring a real-world sales dataset and transforming raw data into meaningful business insights using Python, SQL, data visualization, and Business Intelligence techniques.
 
-The cleaned dataset can now be used for further **Exploratory Data Analysis (EDA), SQL analysis, business intelligence, and dashboard development** in the subsequent internship tasks.
+The project helped strengthen my practical skills in **data analysis, SQL, visualization, and business-oriented problem solving**.
 
 ---
 
-## 👩‍💻 Internship
+## 👩‍💻 Author
+Bhavana V
 
-**ApexPlanet Software Pvt. Ltd.**
-
-**Program:** 60-Day Data Analytics Internship
-
-**Task:** Task 1 – Data Immersion & Wrangling
-
-**Tools:** Python | Pandas | NumPy | Matplotlib | Seaborn | Google Colab | GitHub
+Data Analytics Intern  
+ApexPlanet Software Pvt. Ltd.
 
